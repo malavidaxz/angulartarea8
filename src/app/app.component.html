@@ -1,0 +1,44 @@
+<form >
+  <h1>Datos Personales</h1>
+  <section class="form-group">
+    <label for="nombre" class="col-2 col-form-label">Nombre:</label>
+    <section class="col-4">
+      <input type="text" id="nombre" #nombre class="form-control">
+    </section>
+  </section >
+  <section class="form-group">
+    <label for="apellidos" class="col-2 col-form-label">Apellidos:</label>
+    <section class="col-4">
+    <input type="text" id="apellidos" #apellidos class="form-control">
+  </section>
+  </section>
+  <section class="form-group">
+    <label for="edad" class="col-2 col-form-label">Edad:</label>
+    <section class="col-4">
+    <input type="number" id="edad"  [(ngModel)]="edad"  name="edad" class="form-control">
+    </section>
+  </section>
+  <input type="button" class="btn btn-primary mt-2" value="Añadir" (click)="agregaraLista(nombre.value,apellidos.value)">
+</form> 
+
+<div *ngIf="edad >= 18; then adult else minor"></div>
+
+<ng-template #adult>
+  <p>La persona es mayor de edad.</p>
+  
+</ng-template>
+<ng-template #minor>
+  <p>La persona es menor de edad.</p>
+</ng-template>
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Apellidos</th>
+    <th>Edad</th>
+  </tr>
+  <tr *ngFor="let persona of personas">
+    <td>{{ persona.nombre }}</td>
+    <td>{{ persona.apellidos }}</td>
+    <td>{{ persona.edad }}</td>
+  </tr>
+</table>
